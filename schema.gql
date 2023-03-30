@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""user"""
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  posts: [Post!]!
+}
+
+"""post"""
+type Post {
+  id: Int!
+  userId: Int!
+  content: String!
+  user: User!
+}
+
+type Query {
+  sayHello: String!
+  user(id: Int!): User!
+  signIn(signInInput: SignInInput!): String!
+  posts(findPostArgs: FindPostArgs!): [Post!]!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input FindPostArgs {
+  skip: Int! = 0
+  take: Int! = 25
+  userId: Int
+}
+
+type Mutation {
+  createUser(newUserInput: NewUserInput!): User!
+  createPost(newPostInput: NewPostInput!): Post!
+}
+
+input NewUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input NewPostInput {
+  content: String!
+}
+
+type Subscription {
+  postAdded: Post!
+}
